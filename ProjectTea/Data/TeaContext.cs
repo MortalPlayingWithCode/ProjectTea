@@ -175,6 +175,10 @@ public partial class TeaContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("TenHH");
 
+            entity.HasOne(d => d.MaLoaiNavigation).WithMany(p => p.HangHoas)
+                .HasForeignKey(d => d.MaLoai)
+                .HasConstraintName("FK_Products_Categories");
+
             entity.HasOne(d => d.MaNccNavigation).WithMany(p => p.HangHoas)
                 .HasForeignKey(d => d.MaNcc)
                 .HasConstraintName("FK_Products_Suppliers");
@@ -182,7 +186,7 @@ public partial class TeaContext : DbContext
 
         modelBuilder.Entity<HangHoaLog>(entity =>
         {
-            entity.HasKey(e => e.LogId).HasName("PK__HangHoaL__5E5499A86966F551");
+            entity.HasKey(e => e.LogId).HasName("PK__HangHoaL__5E5499A8B8B2A169");
 
             entity.ToTable("HangHoaLog");
 
@@ -211,7 +215,7 @@ public partial class TeaContext : DbContext
             entity.Property(e => e.GhiChu).HasMaxLength(50);
             entity.Property(e => e.HoTen).HasMaxLength(1);
             entity.Property(e => e.MaKh)
-                .HasMaxLength(50)
+                .HasMaxLength(20)
                 .HasColumnName("MaKH");
             entity.Property(e => e.MaNv)
                 .HasMaxLength(50)
@@ -225,6 +229,10 @@ public partial class TeaContext : DbContext
             entity.Property(e => e.NgayGiao)
                 .HasDefaultValueSql("(((1)/(1))/(1900))")
                 .HasColumnType("datetime");
+
+            entity.HasOne(d => d.MaKhNavigation).WithMany(p => p.HoaDons)
+                .HasForeignKey(d => d.MaKh)
+                .HasConstraintName("FK_Orders_Customers");
 
             entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.HoaDons)
                 .HasForeignKey(d => d.MaNv)

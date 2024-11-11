@@ -14,4 +14,6 @@ public partial class Loai
     public string? MoTa { get; set; }
 
     public string? Hinh { get; set; }
+
+    public virtual ICollection<HangHoa> HangHoas { get; set; } = new List<HangHoa>();
 }

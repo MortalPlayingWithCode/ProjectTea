@@ -16,7 +16,7 @@ namespace ProjectTea.ViewComponents
                 MaLoai = lo.MaLoai,
                 TenLoai = lo.TenLoai,
                 SoLuong = lo.HangHoas.Count
-            });
+            }).OrderBy(p => p.TenLoai);
 
             return View(data); // Defaul.cshtml
         }
